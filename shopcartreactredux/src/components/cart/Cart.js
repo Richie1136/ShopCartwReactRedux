@@ -1,11 +1,18 @@
-import React from 'react'
+import Card from '../card/Card';
+import classes from './Cart.module.css';
+import CartItem from '../cartitem/CartItem';
 
-const Cart = () => {
+const Cart = (props) => {
   return (
-    <div>
-      Cart
-    </div>
-  )
-}
+    <Card className={classes.cart}>
+      <h2>Your Shopping Cart</h2>
+      <ul>
+        <CartItem
+          item={{ title: 'Test Item', quantity: 3, total: 18, price: 6 }}
+        />
+      </ul>
+    </Card>
+  );
+};
 
-export default Cart
+export default Cart;

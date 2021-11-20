@@ -1,11 +1,12 @@
-import React from 'react'
+import Header from "../header/Header";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
-    <div>
-      Layout
-    </div>
-  )
-}
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
