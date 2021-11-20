@@ -1,18 +1,17 @@
 import Card from '../card/Card';
-import classes from './ProductItem.module.css';
+import './ProductItem.module.css';
 
-const ProductItem = (props) => {
-  const { title, price, description } = props;
+const ProductItem = ({ title, price, description }) => {
 
   return (
-    <li className={classes.item}>
+    <li className='item'>
       <Card>
         <header>
           <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
+          <div className='price'>${price.toFixed(2)}</div>
         </header>
         <p>{description}</p>
-        <div className={classes.actions}>
+        <div className='actions'>
           <button>Add to Cart</button>
         </div>
       </Card>

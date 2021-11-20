@@ -1,11 +1,11 @@
-import classes from './Card.module.css';
+import './Card.css';
 
-const Card = (props) => {
+const Card = ({ className, children }) => {
   return (
     <section
-      className={`${classes.card} ${props.className ? props.className : ''}`}
+      className={`card ${className ? className : ''}`}
     >
-      {props.children}
+      {children}
     </section>
   );
 };

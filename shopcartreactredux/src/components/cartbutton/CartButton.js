@@ -1,10 +1,10 @@
-import classes from './CartButton.module.css';
+import './CartButton.css';
 
 const CartButton = (props) => {
   return (
-    <button className={classes.button}>
+    <button className='button'>
       <span>My Cart</span>
-      <span className={classes.badge}>1</span>
+      <span className='badge'>1</span>
     </button>
   );
 };

@@ -1,10 +1,10 @@
 import Card from '../card/Card';
-import classes from './Cart.module.css';
+import './Cart.css';
 import CartItem from '../cartitem/CartItem';
 
 const Cart = (props) => {
   return (
-    <Card className={classes.cart}>
+    <Card className='cart'>
       <h2>Your Shopping Cart</h2>
       <ul>
         <CartItem
