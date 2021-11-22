@@ -1,7 +1,24 @@
 import Card from '../card/Card';
 import './ProductItem.module.css';
 
-const ProductItem = ({ title, price, description }) => {
+import { cartActions } from '../../store/cart-slice';
+import { useDispatch } from 'react-redux'
+
+const ProductItem = ({ title, price, description, id }) => {
+
+
+  const dispatch = useDispatch()
+
+  const addItemToCart = () => {
+    dispatch(cartActions.addItemToCart({
+      id, title, price
+    }))
+  }
+
+  const removeItemFromCart = () => {
+    dispatch(cartActions.removeItemFromCart())
+  }
+
 
   return (
     <li className='item'>
@@ -12,7 +29,7 @@ const ProductItem = ({ title, price, description }) => {
         </header>
         <p>{description}</p>
         <div className='actions'>
-          <button>Add to Cart</button>
+          <button onClick={addItemToCart}>Add to Cart</button>
         </div>
       </Card>
     </li>
