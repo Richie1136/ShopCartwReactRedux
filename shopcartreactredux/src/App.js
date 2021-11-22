@@ -13,7 +13,8 @@ function App() {
 
   useEffect(() => {
     fetch('https://react-foodapp-ac153-default-rtdb.firebaseio.com/cart.json', {
-      method: 'PUT'
+      method: 'PUT',
+      body: JSON.stringify(cart)
     })
   }, [cart])
   return (
