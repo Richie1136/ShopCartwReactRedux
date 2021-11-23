@@ -1,6 +1,6 @@
 import './Notification.css';
 
-const Notification = ({ status, title, message }) => {
+const Notification = ({ status, title, message, error, success }) => {
   let specialClasses = '';
 
   if (status === 'error') {

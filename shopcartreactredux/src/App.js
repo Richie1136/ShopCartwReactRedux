@@ -4,6 +4,7 @@ import Products from './components/products/Products';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { uiActions } from './store/ui-slice'
+import Notification from './components/notification/Notification';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
   const isUi = useSelector(state => state.ui.cartVisible)
 
   const cart = useSelector(state => state.cart)
+
+  const notification = useSelector(state => state.ui.notification)
 
   useEffect(() => {
     const sendCartData = async () => {
@@ -28,24 +31,27 @@ function App() {
         throw new Error("Sending data failed")
       }
       dispatch(uiActions.showNotification({
-        status: 'Success',
+        status: 'success',
         title: 'Successful',
         message: 'Data has been sent successfully'
       }))
     }
     sendCartData().catch(err => {
       dispatch(uiActions.showNotification({
-        status: 'Error',
+        status: 'error',
         title: 'Error occured',
         message: 'Sending data failed.'
       }))
     })
-  }, [cart])
+  }, [cart, dispatch])
   return (
-    <Layout>
-      {isUi && <Cart />}
-      <Products />
-    </Layout>
+    <>
+      {notification && <Notification status={notification.status} title={notification.title} message={notification.message} />}
+      <Layout>
+        {isUi && <Cart />}
+        <Products />
+      </Layout>
+    </>
   );
 }
 
