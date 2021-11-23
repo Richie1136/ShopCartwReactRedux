@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { uiActions } from './store/ui-slice'
 import Notification from './components/notification/Notification';
 
+let Initial = true
 
 function App() {
   const dispatch = useDispatch()
@@ -36,6 +37,12 @@ function App() {
         message: 'Data has been sent successfully'
       }))
     }
+
+    if (Initial) {
+      Initial = false
+      return
+    }
+
     sendCartData().catch(err => {
       dispatch(uiActions.showNotification({
         status: 'error',
