@@ -18,24 +18,6 @@ function App() {
 
   useEffect(() => {
     const sendCartData = async () => {
-      dispatch(uiActions.showNotification({
-        status: 'pending',
-        title: 'Sending...',
-        message: 'Sending Data'
-      }))
-      const response = await fetch('https://react-foodapp-ac153-default-rtdb.firebaseio.com/cart.json', {
-        method: 'PUT',
-        body: JSON.stringify(cart)
-      })
-
-      if (!response.ok) {
-        throw new Error("Sending data failed")
-      }
-      dispatch(uiActions.showNotification({
-        status: 'success',
-        title: 'Successful',
-        message: 'Data has been sent successfully'
-      }))
     }
 
     if (Initial) {
@@ -44,11 +26,7 @@ function App() {
     }
 
     sendCartData().catch(err => {
-      dispatch(uiActions.showNotification({
-        status: 'error',
-        title: 'Error occured',
-        message: 'Sending data failed.'
-      }))
+
     })
   }, [cart, dispatch])
   return (
