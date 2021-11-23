@@ -4,9 +4,10 @@ import Products from './components/products/Products';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import Notification from './components/notification/Notification';
-import { sendData } from './store/cart-actions'
+import { sendData, fetchCartData } from './store/cart-actions'
 
 let Initial = true
+
 
 function App() {
   const dispatch = useDispatch()
@@ -16,13 +17,20 @@ function App() {
 
   const notification = useSelector(state => state.ui.notification)
 
-  useEffect(() => {
 
+  useEffect(() => {
+    dispatch(fetchCartData())
+  }, [dispatch])
+
+  useEffect(() => {
     if (Initial) {
       Initial = false
       return
     }
-    dispatch(sendData(cart))
+    if (cart.changed) {
+
+      dispatch(sendData(cart))
+    }
   }, [cart, dispatch])
   return (
     <>

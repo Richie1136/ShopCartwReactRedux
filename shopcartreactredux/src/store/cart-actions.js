@@ -1,9 +1,25 @@
 import { uiActions } from "./ui-slice"
+import { cartActions } from "./cart-slice"
 
-export const fetchData = () => {
-  return (dispatch) => {
-    const fetchInfo = async () => {
+export const fetchCartData = () => {
+  return async (dispatch) => {
+    const fetchData = async () => {
       const response = await fetch('https://react-foodapp-ac153-default-rtdb.firebaseio.com/cart.json')
+      if (!response.ok) {
+        throw new Error("Getting data failed")
+      }
+      const data = await response.json()
+      return data
+    }
+    try {
+      const cartData = await fetchData()
+      dispatch(cartActions.replaceCart(cartData))
+    } catch (err) {
+      dispatch(uiActions.showNotification({
+        status: 'error',
+        title: 'Error occured',
+        message: 'Fetching data failed.'
+      }))
     }
   }
 }
